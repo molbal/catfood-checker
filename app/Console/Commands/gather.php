@@ -101,7 +101,7 @@
 				$price = 0;
 				try {
 					$html = $this->getSite($store->url);
-					$price = intval(preg_replace_array('/\s/', [''], $this->htmlSelect($html, $store->xpath)));
+					$price = intval(preg_replace('/[^0-9]/', '', $this->htmlSelect($html, $store->xpath)));
 
 				}
 				catch (Exception $e) {
@@ -114,7 +114,10 @@
 				$query->source_url = $store->url;
 				$query->source_short = $store->store_name;
 				$query->price = $price;
-				$query->save();
+				$saved = $query->save();
+				if (!$saved) {
+
+				}
 			}
 		}
 

@@ -17,3 +17,4 @@ INSERT INTO `stores` (`store_name`, `url`, `xpath`) VALUES
 ('SPAR', 'https://www.spar.hu/onlineshop/whiskas-1-klasszikus-valogatas-teljes-erteku-nedves-eledel-felnott-macskaknak-martasban-12-x-100-g/p/360183009', 'div.productMainDetailsPriceLabels label.productDetailsPrice'),
 ('Tesco', 'https://bevasarlas.tesco.hu/groceries/hu-HU/products/2004020163664', 'span.value[data-auto=''price-value'']');
 ```
+6. Schedule artisan schedule
