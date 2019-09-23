@@ -51,8 +51,8 @@
 
 			$queries = DB::table("queries")
 				->whereRaw("created_at > NOW() - INTERVAL 5 HOUR")
-				->select(["source_short", "source_url", "price"])
-				->orderBy("price", "asc")
+				->select(["source_short", "source_url", "price", "price_per_packet"])
+				->orderBy("price_per_packet", "asc")
 				->get();
 
 			Mail::to(Config::get("catfood.mailto"))
@@ -114,6 +114,7 @@
 				$query->source_url = $store->url;
 				$query->source_short = $store->store_name;
 				$query->price = $price;
+				$query->price_per_packet = round($price/$store->packet);
 				$saved = $query->save();
 				if (!$saved) {
 
