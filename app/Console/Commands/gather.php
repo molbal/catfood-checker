@@ -79,6 +79,9 @@
 		}
 
 		private function htmlSelect(string $html, string $selector): ?string {
+		    if (!$html) {
+		        return null;
+            }
 			libxml_use_internal_errors(true);
 			$dom = new \DOMDocument();
 			$dom->recover = true;
