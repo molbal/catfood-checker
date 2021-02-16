@@ -1,5 +1,5 @@
 <?php
 	return [
-		'mailto' => 'molbal94@gmail.com',
+		'mailto' => 'sutiverzum@gmail.com',
 		'mailcc' => 'molbal94@gmail.com'
 	];
