@@ -16,6 +16,8 @@
         }
     }
 
+
+
     @media  only screen and (max-width: 500px) {
         .button {
             width: 100% !important;
@@ -27,7 +29,7 @@
             <table class="content" width="100%" cellpadding="0" cellspacing="0" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 0; padding: 0; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">
                 <tr>
                     <td class="header" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; padding: 25px 0; text-align: center;">
-                        <a href="https://markdownmail.com" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 19px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 #ffffff;">
+                        <a style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #bbbfc3; font-size: 19px; font-weight: bold; text-decoration: none; text-shadow: 0 1px 0 #ffffff;">
                             Macskakaja árak
                         </a>
                     </td>
@@ -42,16 +44,18 @@
                                     <div class="table" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
                                         <table style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; margin: 30px auto; width: 100%; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%;">
                                             <thead style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;"><tr>
-                                                <th style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;">Bolt</th>
-                                                <th style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;">Ár</th>
-                                                <th style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px; text-align: right;">Link</th>
+                                                <th style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;">Bolt</th>
+                                                <th style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;text-align: right;">Ár</th>
+                                                <th style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px;text-align: right;">Ár / csomag</th>
+                                                <th style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; border-bottom: 1px solid #edeff2; padding-bottom: 8px; text-align: right;">Link</th>
                                             </tr></thead>
                                             <tbody style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box;">
                                             @foreach($queries as $query)
                                             <tr>
-                                                <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0;">{{$query->source_short}}</td>
-                                                <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0;">{{number_format($query->price, 0, ',', ' ')}} Ft</td>
-                                                <td style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; font-size: 15px; line-height: 18px; padding: 10px 0; text-align: right;"><a href="{{$query->source_url}}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #ffffff; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097d1; border-top: 10px solid #3097d1; border-right: 18px solid #3097d1; border-bottom: 10px solid #3097d1; border-left: 18px solid #3097d1;">Link</a></td>
+                                                <td style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; line-height: 18px; padding: 10px 0;">{{$query->source_short}}</td>
+                                                <td style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; line-height: 18px; padding: 10px 0;text-align: right;">{{number_format($query->price, 0, ',', ' ')}} Ft</td>
+                                                <td style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; line-height: 18px; padding: 10px 0;text-align: right;">{{number_format($query->price_per_packet, 0, ',', ' ')}} Ft</td>
+                                                <td style="font-size:2rem;font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; color: #74787e; line-height: 18px; padding: 10px 0; text-align: right;"><a href="{{$query->source_url}}" class="button button-blue" target="_blank" style="font-family: Avenir, Helvetica, sans-serif; box-sizing: border-box; border-radius: 3px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.16); color: #ffffff; display: inline-block; text-decoration: none; -webkit-text-size-adjust: none; background-color: #3097d1; border-top: 10px solid #3097d1; border-right: 18px solid #3097d1; border-bottom: 10px solid #3097d1; border-left: 18px solid #3097d1;">Link</a></td>
                                             </tr>
                                             @endforeach
                                             </tbody>

@@ -44,7 +44,7 @@
 
 
 			$days = DB::table("queries")
-				->select(DB::raw("MIN(price) as minprice, DATE(created_at) as cr"))
+				->select(DB::raw("MIN(price_per_packet) as minprice, DATE(created_at) as cr"))
 				->whereRaw("created_at > NOW() - INTERVAL 8 DAY")
 				->groupBy("cr")
 				->orderBy("cr", "asc")
@@ -61,6 +61,6 @@
 			}
 
 			return
-				'https://image-charts.com/chart?cht=bvg&chd=t:'.implode(",", $prices).'&chs=623x300&chxt=x,y&chxl=0:|'.implode("|", $labels).'&chf=b0,lg,90,2990a0,1,34b2c5,0.2&chl='.implode("|", $onlabel).'&chxs=1N**Ft&chtt=Whiskas ár (napi minimum)&chma=0,0&chxr=1,0,2000,500&chds=0,2000';
+				'https://image-charts.com/chart?cht=bvg&chd=t:'.implode(",", $prices).'&chs=623x300&chxt=x,y&chxl=0:|'.implode("|", $labels).'&chf=b0,lg,90,2990a0,1,34b2c5,0.2&chl='.implode("|", $onlabel).'&chxs=1N**Ft&chtt=Whiskas (napi minimum/csomag)&chma=0,0&chxr=1,0,150,30&chds=0,2000';
 				}
 	}

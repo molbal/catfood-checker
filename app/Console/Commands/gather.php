@@ -51,8 +51,8 @@
 
 			$queries = DB::table("queries")
 				->whereRaw("created_at > NOW() - INTERVAL 5 HOUR")
-				->select(["source_short", "source_url", "price"])
-				->orderBy("price", "asc")
+				->select(["source_short", "source_url", "price", "price_per_packet"])
+				->orderBy("price_per_packet", "asc")
 				->get();
 
 			Mail::to(Config::get("catfood.mailto"))
@@ -79,7 +79,10 @@
 			return $data;
 		}
 
-		private function htmlSelect(string $html, string $selector): string {
+		private function htmlSelect(string $html, string $selector): ?string {
+		    if (!$html) {
+		        return null;
+            }
 			libxml_use_internal_errors(true);
 			$dom = new \DOMDocument();
 			$dom->recover = true;
@@ -89,7 +92,12 @@
 			$converter = new CssSelectorConverter();
 			$xpath = $converter->toXPath( $selector);
 			$ret = $x->query($xpath);
-			return $ret[0]->textContent;
+			if (isset($ret[0]->textContent)) {
+                return $ret[0]->textContent;
+            }
+			else {
+			    return null;
+            }
 		}
 
 		/**
@@ -103,7 +111,9 @@
 				try {
 					$html = $this->getSite($store->url);
 					$price = intval(preg_replace('/[^0-9]/', '', $this->htmlSelect($html, $store->xpath)));
-
+                    if (!$price) {
+                        continue;
+                    }
 				}
 				catch (Exception $e) {
 					$this->error("Could not fetch store. " . $e);
@@ -115,6 +125,7 @@
 				$query->source_url = $store->url;
 				$query->source_short = $store->store_name;
 				$query->price = $price;
+				$query->price_per_packet = round($price/$store->packet);
 				$saved = $query->save();
 				if (!$saved) {
 
